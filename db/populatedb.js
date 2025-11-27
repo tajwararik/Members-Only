@@ -13,7 +13,7 @@ const SQL = `
     );
     
     
-    CREATE TABLE messages (
+    CREATE TABLE IF NOT EXISTS messages (
        id SERIAL PRIMARY KEY,
        title VARCHAR(255) NOT NULL,
        text TEXT NOT NULL,
