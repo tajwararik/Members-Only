@@ -2,8 +2,10 @@ const express = require("express");
 const session = require("express-session");
 const path = require("node:path");
 const userValidation = require("./validators/userValidator");
+const messageValidation = require("./validators/messageValidator");
 const passport = require("./validators/passport");
 const userController = require("./controllers/userController");
+const messageController = require("./controllers/messageController");
 require("dotenv").config();
 
 const PORT = process.env.PORT || 3000;
@@ -49,6 +51,12 @@ app.post(
 app.get("/home", checkingAuthentication, userController.getUserHome);
 app.get("/logout", userController.userLogOut);
 app.get("/join-club", userController.joinSecretClub);
+app.get("/new-message", messageController.getMessageForm);
+app.post(
+  "/new-message",
+  messageValidation.createMessage,
+  messageController.createMessage
+);
 
 app.listen(PORT, (error) => {
   if (error) throw error;
