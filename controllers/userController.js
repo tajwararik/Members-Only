@@ -16,8 +16,9 @@ function getLogInForm(req, res) {
   res.render("login");
 }
 
-function getUserHome(req, res) {
-  res.render("home", { user: req.user });
+async function getUserHome(req, res) {
+  const messagesByUsers = await userQueries.getMessagesFromUsers();
+  res.render("home", { userObj: req.user, users: messagesByUsers });
 }
 
 function userLogOut(req, res, next) {
