@@ -7,9 +7,51 @@
   </head>
 
   <body>
-    <h1>Secret club</h1>
-    <p>Hello, <%= user.first_name %>!</p>
-    <a href="new-message">Create a new message</a>
-    <a href="/logout">Log out</a>
+    <header>
+      <h1>Secret club</h1>
+      <div>
+        <a href="join-club">Join the club</a>
+        <a href="/logout">Log out</a>
+      </div>
+    </header>
+
+    <section>
+      <p>Hello, <%= userObj.first_name %>!</p>
+      <a href="new-message">Create a new message</a>
+    </section>
+
+    <main>
+      <% if(userObj.membership) { %> <% users.forEach(user => { %> <%
+      if(user.title !== null && user.text !== null) { %>
+      <p>
+        Posted by <strong><%= user.first_name %></strong> at
+        <i
+          ><%= new Date(user.timestamp).toLocaleString('en-US', {
+          dateStyle:'medium', timeStyle: 'short' }) %>
+        </i>
+      </p>
+
+      <h3><%= user.title %></h3>
+      <p><%= user.text %></p>
+      <hr />
+      <% } %> <% }) %> <% } else { %> <% users.forEach(user => { %> <%
+      if(user.title !== null && user.text !== null) { %>
+      <p>
+        Posted by <strong>anonymous</strong> at
+        <i>##### </i>
+      </p>
+
+      <h3><%= user.title %></h3>
+      <p><%= user.text %></p>
+      <hr />
+      <% } %> <% }) %> <% } %>
+    </main>
+
+    <section>
+      <p>
+        <a href="join-club">Join the club</a> to see the authors and posting
+        time.
+      </p>
+    </section>
   </body>
 </html>

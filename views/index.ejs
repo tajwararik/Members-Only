@@ -16,10 +16,23 @@
     </header>
 
     <main>
-      <% users.forEach(user => { %>
-      <p><%= user.title %></p>
+      <% users.forEach(user => { %> <% if(user.title !== null && user.text !==
+      null) { %>
+      <p>
+        Posted by <strong>anonymous</strong> at
+        <i>#####</i>
+      </p>
+
+      <h3><%= user.title %></h3>
       <p><%= user.text %></p>
-      <% }) %>
+      <hr />
+      <% } %> <% }) %>
     </main>
+
+    <section>
+      <p>
+        <a href="signup">Create an account</a> or <a href="login">log in</a>.
+      </p>
+    </section>
   </body>
 </html>
