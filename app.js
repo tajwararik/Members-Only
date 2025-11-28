@@ -6,6 +6,7 @@ const messageValidation = require("./validators/messageValidator");
 const passport = require("./validators/passport");
 const userController = require("./controllers/userController");
 const messageController = require("./controllers/messageController");
+const queries = require("./db/queries");
 require("dotenv").config();
 
 const PORT = process.env.PORT || 3000;
@@ -34,8 +35,9 @@ function checkingAuthentication(req, res, next) {
   res.redirect("/login");
 }
 
-app.get("/", (req, res) => {
-  res.render("index");
+app.get("/", async (req, res) => {
+  const messagesByUsers = await queries.getMessagesFromUsers();
+  res.render("index", { users: messagesByUsers });
 });
 
 app.get("/signup", userController.getSignUpForm);
