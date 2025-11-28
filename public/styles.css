@@ -19,12 +19,21 @@ header {
   justify-content: space-around;
   align-items: center;
   margin: 10px 0 20px 0;
+  border-bottom: 1px solid #000;
 }
 
 header > div {
   width: 250px;
   display: flex;
   justify-content: space-between;
+}
+
+main p {
+  padding: 10px 0;
+}
+
+section {
+  margin: 20px auto 30px;
 }
 
 form {
