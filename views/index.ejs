@@ -3,12 +3,23 @@
   <head>
     <meta charset="UTF-8" />
     <title>Home</title>
-    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="styles.css" />
   </head>
 
   <body>
-    <h1>Secret club</h1>
-    <a href="login">Log in</a>
-    <a href="signup">Sign up</a>
+    <header>
+      <h1>Secret club</h1>
+      <div>
+        <a href="signup">Sign up</a>
+        <a href="login">Log in</a>
+      </div>
+    </header>
+
+    <main>
+      <% users.forEach(user => { %>
+      <p><%= user.title %></p>
+      <p><%= user.text %></p>
+      <% }) %>
+    </main>
   </body>
 </html>
