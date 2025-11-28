@@ -30,9 +30,18 @@ async function createMessage(title, message, userID) {
   );
 }
 
+async function getMessagesFromUsers() {
+  const { rows } = await pool.query(
+    `SELECT first_name, last_name, title, text, timestamp FROM users LEFT JOIN messages ON users.id = user_id`
+  );
+
+  return rows;
+}
+
 module.exports = {
   createUser,
   getUserByEmail,
   getUserByID,
   createMessage,
+  getMessagesFromUsers,
 };
