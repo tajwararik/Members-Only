@@ -53,6 +53,7 @@ app.post(
 app.get("/home", checkingAuthentication, userController.getUserHome);
 app.get("/logout", userController.userLogOut);
 app.get("/join-club", userController.joinSecretClub);
+app.post("/join-club", userController.updateMembership);
 app.get("/new-message", messageController.getMessageForm);
 app.post(
   "/new-message",
