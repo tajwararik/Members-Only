@@ -60,6 +60,8 @@ app.post(
   messageValidation.createMessage,
   messageController.createMessage
 );
+app.get("/admin", userController.getAdminPage);
+app.post("/admin", userController.updateAdminStatus);
 
 app.listen(PORT, (error) => {
   if (error) throw error;
