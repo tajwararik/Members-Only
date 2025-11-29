@@ -10,8 +10,12 @@
     <header>
       <h1>Secret club</h1>
       <div>
+        <% if(!userObj.membership) { %>
         <a href="join-club">Join the club</a>
-        <a href="/logout">Log out</a>
+        <% } %> <% if(userObj.membership && !userObj.admin) { %>
+        <a href="admin">Admin</a>
+        <% } %>
+        <a href="logout">Log out</a>
       </div>
     </header>
 
@@ -48,7 +52,9 @@
     </main>
 
     <section>
-      <% if(userObj.membership) { %>
+      <% if(userObj.membership && userObj.admin) { %>
+      <p>You are a club admin.</p>
+      <% } else if(userObj.membership && !userObj.admin) { %>
       <p>You are a club member.</p>
       <% } else { %>
       <p>
