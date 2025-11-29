@@ -48,10 +48,14 @@
     </main>
 
     <section>
+      <% if(userObj.membership) { %>
+      <p>You are a club member.</p>
+      <% } else { %>
       <p>
         <a href="join-club">Join the club</a> to see the authors and posting
         time.
       </p>
+      <% } %>
     </section>
   </body>
 </html>
