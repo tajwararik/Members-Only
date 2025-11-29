@@ -45,6 +45,21 @@ async function updateMembership(req, res) {
   res.redirect("/home");
 }
 
+function getAdminPage(req, res) {
+  res.render("admin");
+}
+
+async function updateAdminStatus(req, res) {
+  const { passcode } = req.body;
+
+  if (passcode !== process.env.ADMIN_PASSCODE)
+    return res.status(400).render("admin", { error: "Invalid passcode" });
+
+  await userQueries.updateAdminStatus(req.user.id, true);
+
+  res.redirect("/home");
+}
+
 module.exports = {
   getSignUpForm,
   createUser,
@@ -53,4 +68,6 @@ module.exports = {
   userLogOut,
   joinSecretClub,
   updateMembership,
+  getAdminPage,
+  updateAdminStatus,
 };
