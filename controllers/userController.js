@@ -1,5 +1,6 @@
 const bcrypt = require("bcryptjs");
 const userQueries = require("../db/queries");
+require("dotenv").config();
 
 function getSignUpForm(req, res) {
   res.render("signup");
@@ -33,6 +34,17 @@ function joinSecretClub(req, res) {
   res.render("join-club");
 }
 
+async function updateMembership(req, res) {
+  const { passcode } = req.body;
+
+  if (passcode !== process.env.CLUB_PASSCODE)
+    return res.status(400).render("join-club", { error: "Invalid passcode" });
+
+  await userQueries.updateMembership(req.user.id, true);
+
+  res.redirect("/home");
+}
+
 module.exports = {
   getSignUpForm,
   createUser,
@@ -40,4 +52,5 @@ module.exports = {
   getUserHome,
   userLogOut,
   joinSecretClub,
+  updateMembership,
 };

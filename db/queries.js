@@ -38,10 +38,20 @@ async function getMessagesFromUsers() {
   return rows;
 }
 
+async function updateMembership(id, value) {
+  await pool.query(
+    `UPDATE users
+    SET membership = $1
+    WHERE id = $2`,
+    [value, id]
+  );
+}
+
 module.exports = {
   createUser,
   getUserByEmail,
   getUserByID,
   createMessage,
   getMessagesFromUsers,
+  updateMembership,
 };
