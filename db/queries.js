@@ -30,9 +30,13 @@ async function createMessage(title, message, userID) {
   );
 }
 
+async function deleteMessage(id) {
+  await pool.query(`DELETE FROM messages WHERE id = $1`, [id]);
+}
+
 async function getMessagesFromUsers() {
   const { rows } = await pool.query(
-    `SELECT first_name, last_name, title, text, timestamp FROM users LEFT JOIN messages ON users.id = user_id`
+    `SELECT first_name, last_name, messages.id AS message_id, title, text, timestamp FROM users LEFT JOIN messages ON users.id = user_id`
   );
 
   return rows;
@@ -61,6 +65,7 @@ module.exports = {
   getUserByEmail,
   getUserByID,
   createMessage,
+  deleteMessage,
   getMessagesFromUsers,
   updateMembership,
   updateAdminStatus,
