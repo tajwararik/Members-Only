@@ -11,7 +11,14 @@ async function createMessage(req, res) {
   res.redirect("/home");
 }
 
+async function deleteMessage(req, res) {
+  const { id } = req.params;
+  await messageQueries.deleteMessage(id);
+  res.redirect("/home");
+}
+
 module.exports = {
   getMessageForm,
   createMessage,
+  deleteMessage,
 };
