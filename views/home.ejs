@@ -37,6 +37,12 @@
 
       <h3><%= user.title %></h3>
       <p><%= user.text %></p>
+
+      <% if(userObj.admin) { %>
+      <form action="/home/<%= user.message_id %>/delete" method="post">
+        <button type="submit" onclick="return confirm('Are you sure?')" style="font-size: 16px; width: 80px; margin: 0;">Delete</button>
+      </form>
+      <% } %>
       <hr />
       <% } %> <% }) %> <% } else { %> <% users.forEach(user => { %> <%
       if(user.title !== null && user.text !== null) { %>
