@@ -62,6 +62,7 @@ app.post(
 );
 app.get("/admin", userController.getAdminPage);
 app.post("/admin", userController.updateAdminStatus);
+app.post("/home/:id/delete", messageController.deleteMessage);
 
 app.listen(PORT, (error) => {
   if (error) throw error;
